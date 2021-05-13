@@ -1,3 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+
 //Will catch a few exceptions and return an exception message
 
 public class ExceptionHandeling {
@@ -11,10 +15,14 @@ public class ExceptionHandeling {
         {
             try{
                 x = y/i;
-                System.out.println(y + "/" + i + "=" + x);
+                System.out.print(y + "/" + i + "=" + x);
             }
             catch(ArithmeticException ex){
-                System.out.println("Divide by zero is impossible!");
+                System.out.print("Divide by zero is impossible!");
+            }
+            //Code that must be excuted regardless of exception
+            finally{
+                System.out.println(" // You are beautiful");
             }
         }
     }
@@ -34,11 +42,22 @@ public class ExceptionHandeling {
             System.out.println("Index out of bounds");
         }
     }
+    public static void fileReaderEx()
+    {
+        String str = "fakeDir/notARealFile";
+        try{
+            new FileReader(new File(str));
+        }
+        catch(FileNotFoundException ex)
+        {
+            System.out.println("**" + str + "** cannot be found");
+        }
+    }
 
     public static void main(String[] args) {
         zeroException();
         System.out.println();
         indexOoB();
+        fileReaderEx();
     }
-    
 }
